@@ -1,0 +1,5 @@
+#ifndef IMAGEFILTER
+#define IMAGEFILTER
+
+#endif // IMAGEFILTER
+
