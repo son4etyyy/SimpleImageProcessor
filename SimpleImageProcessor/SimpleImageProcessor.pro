@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    graylevelhistogram.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    graylevelhistogram.h
 
 FORMS    += mainwindow.ui
