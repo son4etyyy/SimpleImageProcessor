@@ -14,9 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    graylevelhistogram.cpp
+        graylevelhistogram.cpp\
+        blur.cpp \
+        sharpen.cpp \
+        grayscale.cpp
 
 HEADERS  += mainwindow.h \
-    graylevelhistogram.h
+    graylevelhistogram.h \
+    imagefilter.h \
+    grayscale.h \
+    blur.h \
+    sharpen.h
 
 FORMS    += mainwindow.ui
