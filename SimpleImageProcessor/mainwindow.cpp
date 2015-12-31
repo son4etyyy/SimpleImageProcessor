@@ -20,8 +20,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    this->File = QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::currentPath(),tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)"));
-    this->currImg->load(File);
+    this->fileName = QFileDialog::getOpenFileName(this,
+                                                 tr("Open Image"),
+                                                 QDir::currentPath(),
+                                                 tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
+                                                 );
+    this->currImg->load(fileName);
     this->currScene->clear();
     this->currScene->addPixmap(*currImg);
     this->ui->graphicsView->show();
@@ -29,12 +33,16 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    this->currImg->save(this->File,0,100);
+    this->currImg->save(this->fileName,0,100);
 }
 
 void MainWindow::on_actionSave_As_triggered()
 {
-    QString saveName = QFileDialog::getSaveFileName(this,tr("Save Image"),QDir::currentPath(),tr("Jpeg (*.jpeg);;Bmp (*.bmp);; Tif (*.tif);;Png (*.png)") );
+    QString saveName = QFileDialog::getSaveFileName(this,
+                                                    tr("Save Image"),
+                                                    QDir::currentPath(),
+                                                    tr("Jpeg (*.jpeg);;Bmp (*.bmp);; Tif (*.tif);;Png (*.png)")
+                                                    );
     this->currImg->save(saveName,0,100);
 }
 
