@@ -6,7 +6,7 @@ class ImageFilter
 {
 public:
     // pure virtual method providing interface
-    virtual void apply(QImage &srcImage) = 0;
+    virtual QImage apply(QImage srcImage) = 0;
 };
 
 #endif // IMAGEFILTER

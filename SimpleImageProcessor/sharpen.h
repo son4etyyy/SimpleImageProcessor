@@ -5,7 +5,7 @@
 class Sharpen : public ImageFilter
 {
 public:
-    void apply(QImage &srcImage);
+    QImage apply(QImage srcImage);
 };
 
 #endif // SHARPEN

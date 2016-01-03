@@ -1,6 +1,6 @@
 #include "blur.h"
 
-void Blur::apply(QImage &srcImage)
+QImage Blur::apply(QImage srcImage)
 {
     //do stuff
 }
