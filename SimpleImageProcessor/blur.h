@@ -6,7 +6,7 @@
 class Blur : public ImageFilter
 {
 public:
-    void apply();
+    void apply(QImage &srcImage);
 };
 
 #endif // BLUR
