@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = SimpleImageProcessor
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
         graylevelhistogram.cpp\
@@ -27,3 +26,10 @@ HEADERS  += mainwindow.h \
     sharpen.h
 
 FORMS    += mainwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/release/ -lqwt
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/debug/ -lqwt
+else:unix: LIBS += -L$$PWD/qwt-6.1.2/lib/ -lqwt
+
+INCLUDEPATH += $$PWD/qwt-6.1.2/include
+DEPENDPATH += $$PWD/qwt-6.1.2/include
