@@ -1,5 +1,4 @@
 #include "graylevelhistogram.h"
-
 QVector<int> GrayLevelHistogram::getHistogram(QImage *image)
 {
     QVector<int> histogram = QVector<int>(256);
