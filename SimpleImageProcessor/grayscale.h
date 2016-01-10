@@ -5,7 +5,7 @@
 class GrayScale : public ImageFilter
 {
 public:
-    void apply();
+    QImage apply(QImage srcImage);
 };
 
 #endif // GRAYSCALE_H

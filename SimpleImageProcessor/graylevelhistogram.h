@@ -1,7 +1,7 @@
 #ifndef GRAYLEVELHISTOGRAM_H
 #define GRAYLEVELHISTOGRAM_H
 #include<QImage>
-
+#include<qwt.h>
 class GrayLevelHistogram
 {
 public:
