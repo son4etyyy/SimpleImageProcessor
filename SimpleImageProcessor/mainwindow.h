@@ -29,8 +29,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *currScene;
-    QPixmap * currImg;
+    QImage * currImg;
     QString fileName;
+    void display();
 };
 
 #endif // MAINWINDOW_H
