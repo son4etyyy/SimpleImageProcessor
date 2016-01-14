@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "imagefilter.h"
+#include "blur.h"
+#include "grayscale.h"
+#include<iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -53,6 +58,9 @@ void MainWindow::on_actionSave_As_triggered()
 void MainWindow::on_actionBlur_triggered()
 {
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new Blur();
+    QImage image = filter->apply(*(this->currImg));
+    this->currImg = &image;
     this->display();
 
 }
@@ -67,6 +75,9 @@ void MainWindow::on_actionSharpen_triggered()
 void MainWindow::on_actionTo_Greyscale_triggered()
 {
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new GrayScale();
+    QImage image = filter->apply(*(this->currImg));
+    this->currImg = &image;
     this->display();
 }
 
@@ -74,7 +85,6 @@ void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 {
     /*Apply filter to this->currImg */
     this->display();
-
 }
 
 void MainWindow::on_actionOtsu_s_method_triggered()
