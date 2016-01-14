@@ -28,8 +28,8 @@ private slots:
     void on_actionOtsu_s_method_triggered();
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *currScene;
-    QImage * currImg;
+    QGraphicsScene currScene;
+    QImage currImg;
     QString fileName;
     void display();
 };

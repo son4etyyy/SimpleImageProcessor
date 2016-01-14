@@ -8,25 +8,21 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    currScene(new QGraphicsScene),
-    currImg(new QImage)
+    ui(new Ui::MainWindow)
 {
     this->ui->setupUi(this);
-    this->ui->graphicsView->setScene(currScene);
+    this->ui->graphicsView->setScene(&currScene);
 }
 
 MainWindow::~MainWindow()
 {
-    delete currImg;
-    delete currScene;
     delete ui;
 }
 
 void MainWindow::display()
 {
-    this->currScene->clear();
-    this->currScene->addPixmap(QPixmap::fromImage(*currImg));
+    this->currScene.clear();
+    this->currScene.addPixmap(QPixmap::fromImage(currImg));
     this->ui->graphicsView->show();
 }
 void MainWindow::on_actionOpen_triggered()
@@ -36,13 +32,13 @@ void MainWindow::on_actionOpen_triggered()
                                                  QDir::currentPath(),
                                                  tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
                                                  );
-    this->currImg->load(fileName);
+    this->currImg.load(fileName);
     this->display();
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-    this->currImg->save(this->fileName,0,100);
+    this->currImg.save(this->fileName,0,100);
 }
 
 void MainWindow::on_actionSave_As_triggered()
@@ -52,7 +48,7 @@ void MainWindow::on_actionSave_As_triggered()
                                                     QDir::currentPath(),
                                                     tr("Jpeg (*.jpeg);;Bmp (*.bmp);; Tif (*.tif);;Png (*.png)")
                                                     );
-    this->currImg->save(saveName,0,100);
+    this->currImg.save(saveName,0,100);
 }
 
 void MainWindow::on_actionBlur_triggered()
