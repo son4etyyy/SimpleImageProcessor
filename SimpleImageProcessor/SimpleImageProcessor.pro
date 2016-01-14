@@ -33,3 +33,5 @@ else:unix: LIBS += -L$$PWD/qwt-6.1.2/lib/ -lqwt
 
 INCLUDEPATH += $$PWD/qwt-6.1.2/include
 DEPENDPATH += $$PWD/qwt-6.1.2/include
+
+DISTFILES +=
