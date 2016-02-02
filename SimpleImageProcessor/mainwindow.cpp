@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "leveldialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -74,7 +75,7 @@ void MainWindow::on_actionSave_As_triggered()
 void MainWindow::on_actionBlur_triggered()
 {
     //Object of class inheriting from QDialog used to adjust blur value
-    BlurDialog Blur;
+    LevelDialog Blur;
     //Main BlurDialog funciton used to show the dialog and get the value
     Blur.getValue();
     /*Apply filter to this->currImg */
@@ -87,6 +88,8 @@ void MainWindow::on_actionBlur_triggered()
 //Return type: None
 void MainWindow::on_actionSharpen_triggered()
 {
+    LevelDialog Sharpen;
+    Sharpen.getValue();
     /*Apply filter to this->currImg */
     this->display();
 

@@ -1,17 +1,17 @@
-#include "blurdialog.h"
-#include "ui_blurdialog.h"
+#include "leveldialog.h"
+#include "ui_leveldialog.h"
 
-BlurDialog::BlurDialog(QWidget *parent) :    
+LevelDialog::LevelDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::BlurDialog),
-    //Initialize the blur value exected for returning
-    blurValue(0)
+    ui(new Ui::LevelDialog),
+    //Initialize the value exected for returning
+    Value(0)
 {
     ui->setupUi(this);
     ui->progressBar->setValue(0);
 }
 
-BlurDialog::~BlurDialog()
+LevelDialog::~LevelDialog()
 {
     delete ui;
 }
@@ -19,20 +19,20 @@ BlurDialog::~BlurDialog()
 //@brief Function used to open a dialog and return a value extracted
 //Parameters: None
 //Return type: int (0-99) in percentage
-int BlurDialog::getValue()
+int LevelDialog::getValue()
 {
     //Show the dialog
     this->exec();
     //Return the blurvalue
-    return this->blurValue;
+    return this->Value;
 }
 
 //@brief Callback function from QT events used to store the slider value
 //Parameters: None
 //Return type: None
-void BlurDialog::on_buttonBox_accepted()
+void LevelDialog::on_buttonBox_accepted()
 {
     //The slider value is stored only if OK is pressed
     //Otherways the initial 0 is used
-    blurValue = ui->blurSlider->value();
+    Value = ui->horizontalSlider->value();
 }

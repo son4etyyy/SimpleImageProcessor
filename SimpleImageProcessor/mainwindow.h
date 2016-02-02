@@ -4,7 +4,7 @@
 #include <QString>
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include "blurdialog.h"
+
 
 namespace Ui {
 class MainWindow;
