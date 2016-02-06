@@ -84,9 +84,9 @@ void MainWindow::on_actionSave_As_triggered()
 void MainWindow::on_actionBlur_triggered()
 {
     //Object of class inheriting from QDialog used to adjust blur value
-    LevelDialog Blur;
+    LevelDialog BlurDialog;
     //Main BlurDialog funciton used to show the dialog and get the value
-    Blur.getValue();
+    BlurDialog.getValue();
     /*Apply filter to this->currImg */
     ImageFilter* filter = new Blur();
     this->currImg = filter->apply(this->currImg);
