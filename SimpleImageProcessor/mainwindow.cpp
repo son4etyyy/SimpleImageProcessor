@@ -1,5 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "imagefilter.h"
+#include "blur.h"
+#include "sharpen.h"
+#include "grayscale.h"
+#include "graylevelhistogram.h"
+#include "qcolor.h"
+#include "otsu.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,11 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(&currScene);
+    this->customPlot = ui->customPlot;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete customPlot;
 }
 
 void MainWindow::display()
@@ -49,6 +58,8 @@ void MainWindow::on_actionSave_As_triggered()
 void MainWindow::on_actionBlur_triggered()
 {
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new Blur();
+    this->currImg = filter->apply(this->currImg);
     this->display();
 
 }
@@ -63,19 +74,22 @@ void MainWindow::on_actionSharpen_triggered()
 void MainWindow::on_actionTo_Greyscale_triggered()
 {
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new GrayScale();
+    this->currImg = filter->apply(this->currImg);
     this->display();
 }
 
 void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 {
-    /*Apply filter to this->currImg */
-    this->display();
-
+    GrayLevelHistogram glh;
+    glh.drawHistogram(ui->customPlot, this->currImg);
 }
 
 void MainWindow::on_actionOtsu_s_method_triggered()
 {
-    /*Apply filter to this->currImg */
+    GrayLevelHistogram glh;
+    QVector<double> histogram = glh.getHistogram(this->currImg);
+    ImageFilter* filter = new Otsu(histogram);
+    this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
