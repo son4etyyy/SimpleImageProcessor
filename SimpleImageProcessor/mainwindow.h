@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include "qcustomplot.h"
 
+
 namespace Ui {
 class MainWindow;
 }

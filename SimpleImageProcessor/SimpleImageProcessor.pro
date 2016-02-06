@@ -18,7 +18,8 @@ SOURCES += main.cpp\
         sharpen.cpp \
         grayscale.cpp \
     qcustomplot.cpp \
-    otsu.cpp
+    otsu.cpp\
+    leveldialog.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
@@ -27,8 +28,10 @@ HEADERS  += mainwindow.h \
     blur.h \
     sharpen.h \
     qcustomplot.h \
-    otsu.h
+    otsu.h\
+    leveldialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+            leveldialog.ui
 
 DISTFILES +=
