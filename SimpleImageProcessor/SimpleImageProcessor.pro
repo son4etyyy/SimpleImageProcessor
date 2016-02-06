@@ -16,16 +16,19 @@ SOURCES += main.cpp\
         graylevelhistogram.cpp\
         blur.cpp \
         sharpen.cpp \
-        grayscale.cpp
+        grayscale.cpp \
+    leveldialog.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
     imagefilter.h \
     grayscale.h \
     blur.h \
-    sharpen.h
+    sharpen.h \
+    leveldialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+            leveldialog.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/release/ -lqwt
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/debug/ -lqwt
