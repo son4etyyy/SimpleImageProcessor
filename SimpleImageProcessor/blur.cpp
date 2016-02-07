@@ -4,24 +4,31 @@
 #include <QGraphicsPixmapItem>
 #include <QPainter>
 
-QImage applyEffectToImage(QImage srcImage, QGraphicsEffect *effect, int extent=0)
+Blur::Blur(int radius)
+{
+    this->radius = radius;
+}
+
+QImage Blur::apply(QImage srcImage)
+{
+    QGraphicsBlurEffect *blur = new QGraphicsBlurEffect;
+    blur->setBlurRadius(radius);
+    QImage dstImage = applyEffectToImage(srcImage, blur);
+    return dstImage;
+}
+
+
+QImage Blur::applyEffectToImage(QImage srcImage, QGraphicsEffect *effect)
 {
     QGraphicsScene scene;
     QGraphicsPixmapItem item;
     item.setPixmap(QPixmap::fromImage(srcImage));
     item.setGraphicsEffect(effect);
     scene.addItem(&item);
-    QImage dstImage(srcImage.size()+QSize(extent*2, extent*2), QImage::Format_ARGB32);
+    QImage dstImage(srcImage.size(), QImage::Format_ARGB32);
     QPainter ptr(&dstImage);
-    scene.render(&ptr, QRectF(), QRectF( -extent, -extent, srcImage.width()+extent*2, srcImage.height()+extent*2 ) );
+    scene.render(&ptr, QRectF(), QRectF( 0, 0, srcImage.width(), srcImage.height()));
     return dstImage;
 }
 
-QImage Blur::apply(QImage srcImage)
-{
-    QGraphicsBlurEffect *blur = new QGraphicsBlurEffect;
-    blur->setBlurRadius(8);
-    QImage dstImage = applyEffectToImage(srcImage, blur);
-    return dstImage;
-}
 

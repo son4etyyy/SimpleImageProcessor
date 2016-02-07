@@ -36,28 +36,28 @@ int Otsu::getThreshold(QImage srcImage, QVector<double> histogram){
     int thresholdEndPos = 0;
 
     for (int t=0 ; t<256 ; t++) {
-       weightBackground += histogram[t];
-       if (weightBackground == 0) continue;
+        weightBackground += histogram[t];
+        if (weightBackground == 0) continue;
 
-       weightForeground = totalNumberOfPixels - weightBackground;
-       if (weightForeground == 0) break;
+        weightForeground = totalNumberOfPixels - weightBackground;
+        if (weightForeground == 0) break;
 
-       sumB += (double) (t * histogram[t]);
+        sumB += (double) (t * histogram[t]);
 
-       double medianBackground = sumB / weightBackground;
-       double medianForeground = (sum - sumB) / weightForeground;
+        double medianBackground = sumB / weightBackground;
+        double medianForeground = (sum - sumB) / weightForeground;
 
-       double varBetween = (double)weightBackground * (double)weightForeground * (medianBackground - medianForeground) * (medianBackground - medianForeground);
+        double varBetween = (double)weightBackground * (double)weightForeground * (medianBackground - medianForeground) * (medianBackground - medianForeground);
 
-       if (varBetween > varMax) {
-          varMax = varBetween;
-          thresholdStartPos = t;
-          thresholdEndPos = thresholdStartPos;
-       } else if (varBetween == varMax){
-           if(t == thresholdStartPos+1){
+        if (varBetween > varMax) {
+            varMax = varBetween;
+            thresholdStartPos = t;
+            thresholdEndPos = thresholdStartPos;
+        } else if (varBetween == varMax){
+            if(t == thresholdStartPos+1){
                 thresholdEndPos++;
-           }
-       }
+            }
+        }
     }
 
     return (thresholdStartPos + thresholdEndPos)/2;

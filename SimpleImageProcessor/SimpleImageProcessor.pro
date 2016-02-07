@@ -12,11 +12,11 @@ TARGET = SimpleImageProcessor
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-        graylevelhistogram.cpp\
-        blur.cpp \
-        sharpen.cpp \
-        grayscale.cpp \
+    mainwindow.cpp \
+    graylevelhistogram.cpp\
+    blur.cpp \
+    sharpen.cpp \
+    grayscale.cpp \
     qcustomplot.cpp \
     otsu.cpp\
     leveldialog.cpp

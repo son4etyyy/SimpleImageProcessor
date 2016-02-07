@@ -44,10 +44,10 @@ void MainWindow::on_actionOpen_triggered()
 {
     //QFileDialog with the folloing types allowed - jpg, bmp, tif and png
     this->fileName = QFileDialog::getOpenFileName(this,
-                                                 tr("Open Image"),
-                                                 QDir::currentPath(),
-                                                 tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
-                                                 );
+                                                  tr("Open Image"),
+                                                  QDir::currentPath(),
+                                                  tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
+                                                  );
     //Load the selected file
     this->currImg.load(fileName);
     //Immediately display the file loaded
@@ -86,12 +86,11 @@ void MainWindow::on_actionBlur_triggered()
     //Object of class inheriting from QDialog used to adjust blur value
     LevelDialog BlurDialog;
     //Main BlurDialog funciton used to show the dialog and get the value
-    BlurDialog.getValue();
+    int radius = BlurDialog.getValue();
     /*Apply filter to this->currImg */
-    ImageFilter* filter = new Blur();
+    ImageFilter* filter = new Blur(radius);
     this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
 
 //@brief Callback function from QT events used to apply sharpen filter
@@ -99,11 +98,10 @@ void MainWindow::on_actionBlur_triggered()
 //Return type: None
 void MainWindow::on_actionSharpen_triggered()
 {
-    LevelDialog Sharpen;
-    Sharpen.getValue();
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new Sharpen();
+    this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
 
 //@brief Callback function from QT events used to apply greyscale filter
