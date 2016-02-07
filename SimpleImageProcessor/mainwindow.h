@@ -4,6 +4,7 @@
 #include <QString>
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include "qcustomplot.h"
 
 
 namespace Ui {
@@ -32,6 +33,7 @@ private:
     QGraphicsScene currScene;
     QImage currImg;
     QString fileName;
+    QCustomPlot *customPlot;
     void display();
 };
 

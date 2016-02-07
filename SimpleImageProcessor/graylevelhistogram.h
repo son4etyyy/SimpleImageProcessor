@@ -1,11 +1,12 @@
 #ifndef GRAYLEVELHISTOGRAM_H
 #define GRAYLEVELHISTOGRAM_H
 #include<QImage>
-#include<qwt.h>
+#include"qcustomplot.h"
 class GrayLevelHistogram
 {
 public:
-    QVector<int> getHistogram(QImage *image);
+    QVector<double> getHistogram(QImage image);
+    void drawHistogram(QCustomPlot *customPlot, QImage image);
 };
 
 #endif // GRAYLEVELHISTOGRAM_H

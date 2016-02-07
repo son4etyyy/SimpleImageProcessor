@@ -6,17 +6,19 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = SimpleImageProcessor
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-        graylevelhistogram.cpp\
-        blur.cpp \
-        sharpen.cpp \
-        grayscale.cpp \
+    mainwindow.cpp \
+    graylevelhistogram.cpp\
+    blur.cpp \
+    sharpen.cpp \
+    grayscale.cpp \
+    qcustomplot.cpp \
+    otsu.cpp\
     leveldialog.cpp
 
 HEADERS  += mainwindow.h \
@@ -25,16 +27,11 @@ HEADERS  += mainwindow.h \
     grayscale.h \
     blur.h \
     sharpen.h \
+    qcustomplot.h \
+    otsu.h\
     leveldialog.h
 
 FORMS    += mainwindow.ui \
             leveldialog.ui
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/release/ -lqwt
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qwt-6.1.2/lib/debug/ -lqwt
-else:unix: LIBS += -L$$PWD/qwt-6.1.2/lib/ -lqwt
-
-INCLUDEPATH += $$PWD/qwt-6.1.2/include
-DEPENDPATH += $$PWD/qwt-6.1.2/include
 
 DISTFILES +=

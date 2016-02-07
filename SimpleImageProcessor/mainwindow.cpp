@@ -1,5 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "imagefilter.h"
+#include "blur.h"
+#include "sharpen.h"
+#include "grayscale.h"
+#include "graylevelhistogram.h"
+#include "qcolor.h"
+#include "otsu.h"
 #include "leveldialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -8,11 +15,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(&currScene);
+    this->customPlot = ui->customPlot;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete customPlot;
 }
 
 //@brief Used to update the current scene displayed
@@ -35,10 +44,10 @@ void MainWindow::on_actionOpen_triggered()
 {
     //QFileDialog with the folloing types allowed - jpg, bmp, tif and png
     this->fileName = QFileDialog::getOpenFileName(this,
-                                                 tr("Open Image"),
-                                                 QDir::currentPath(),
-                                                 tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
-                                                 );
+                                                  tr("Open Image"),
+                                                  QDir::currentPath(),
+                                                  tr("Image Files (*.jpeg *.jpg *.bmp *.tif *.png)")
+                                                  );
     //Load the selected file
     this->currImg.load(fileName);
     //Immediately display the file loaded
@@ -75,12 +84,13 @@ void MainWindow::on_actionSave_As_triggered()
 void MainWindow::on_actionBlur_triggered()
 {
     //Object of class inheriting from QDialog used to adjust blur value
-    LevelDialog Blur;
+    LevelDialog BlurDialog;
     //Main BlurDialog funciton used to show the dialog and get the value
-    Blur.getValue();
+    int radius = BlurDialog.getValue();
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new Blur(radius);
+    this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
 
 //@brief Callback function from QT events used to apply sharpen filter
@@ -88,11 +98,10 @@ void MainWindow::on_actionBlur_triggered()
 //Return type: None
 void MainWindow::on_actionSharpen_triggered()
 {
-    LevelDialog Sharpen;
-    Sharpen.getValue();
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new Sharpen();
+    this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
 
 //@brief Callback function from QT events used to apply greyscale filter
@@ -101,6 +110,8 @@ void MainWindow::on_actionSharpen_triggered()
 void MainWindow::on_actionTo_Greyscale_triggered()
 {
     /*Apply filter to this->currImg */
+    ImageFilter* filter = new GrayScale();
+    this->currImg = filter->apply(this->currImg);
     this->display();
 }
 
@@ -109,9 +120,8 @@ void MainWindow::on_actionTo_Greyscale_triggered()
 //Return type: None
 void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 {
-    /*Apply filter to this->currImg */
-    this->display();
-
+    GrayLevelHistogram glh;
+    glh.drawHistogram(ui->customPlot, this->currImg);
 }
 
 //@brief Callback function from QT events used to apply otsu's method
@@ -119,7 +129,9 @@ void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 //Return type: None
 void MainWindow::on_actionOtsu_s_method_triggered()
 {
-    /*Apply filter to this->currImg */
+    GrayLevelHistogram glh;
+    QVector<double> histogram = glh.getHistogram(this->currImg);
+    ImageFilter* filter = new Otsu(histogram);
+    this->currImg = filter->apply(this->currImg);
     this->display();
-
 }
