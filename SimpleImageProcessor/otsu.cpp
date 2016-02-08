@@ -1,6 +1,7 @@
-#include "otsu.h"
+#include"otsu.h"
 #include<QRgb>
 #include<Qt>
+
 Otsu::Otsu(QVector<double> histogram){
     this->histogram = histogram;
 }
