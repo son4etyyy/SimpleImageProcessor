@@ -11,17 +11,18 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    customPlotSize(800,500),
     ui(new Ui::MainWindow)
 {
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(&currScene);
-    this->customPlot = ui->customPlot;
+    this->customPlot.setMinimumSize(this->customPlotSize);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete customPlot;
 }
 
 //@brief Used to update the current scene displayed
@@ -121,7 +122,8 @@ void MainWindow::on_actionTo_Greyscale_triggered()
 void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 {
     GrayLevelHistogram glh;
-    glh.drawHistogram(ui->customPlot, this->currImg);
+    glh.drawHistogram(&this->customPlot, this->currImg);
+    this->customPlot.show();
 }
 
 //@brief Callback function from QT events used to apply otsu's method

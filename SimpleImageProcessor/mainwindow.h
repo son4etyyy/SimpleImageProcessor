@@ -33,7 +33,8 @@ private:
     QGraphicsScene currScene;
     QImage currImg;
     QString fileName;
-    QCustomPlot *customPlot;
+    QSize customPlotSize;
+    QCustomPlot customPlot;
     void display();
 };
 
