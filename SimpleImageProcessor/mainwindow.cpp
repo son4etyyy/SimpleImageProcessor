@@ -11,8 +11,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    customPlotSize(800,500),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    customPlotSize(800,500)
 {
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(&currScene);
