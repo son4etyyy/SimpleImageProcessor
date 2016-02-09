@@ -70,13 +70,39 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionSave_As_triggered()
 {
     //Used to get new file name and format
+    QString suffix;
     QString saveName = QFileDialog::getSaveFileName(this,
                                                     tr("Save Image"),
                                                     QDir::currentPath(),
-                                                    tr("Jpeg (*.jpeg);;Bmp (*.bmp);; Tif (*.tif);;Png (*.png)")
+                                                    tr("Jpeg (*.jpeg);;Bmp (*.bmp);; Tif (*.tif);;Png (*.png)"),
+                                                    &suffix
                                                     );
+    //Determine correct suffix and append it
     //Apply changes to file selected
-    this->currImg.save(saveName,0,100);
+    if(suffix.contains("Jpeg (*.jpeg)"))
+    {
+        saveName.append(".jpeg");
+        this->currImg.save(saveName,0,100);
+    }
+    else if(suffix.contains("Bmp (*.bmp)"))
+    {
+        saveName.append(".bmp");
+        this->currImg.save(saveName,0,100);
+    }
+    else if(suffix.contains("Tif (*.tif)"))
+    {
+        saveName.append(".tif");
+        this->currImg.save(saveName,0,100);
+    }
+    else if(suffix.contains("Png (*.png)"))
+    {
+        saveName.append(".png");
+        this->currImg.save(saveName,0,100);
+    }
+    else
+    {
+        //Do nothing
+    }
 }
 
 //@brief Callback function from QT events used to apply blur filter
