@@ -126,11 +126,13 @@ void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
     this->customPlot.show();
 }
 
-//@brief Callback function from QT events used to apply otsu's method
+//@brief Callback function from QT events used to apply Otsu's method
 //Parameters: None
 //Return type: None
 void MainWindow::on_actionOtsu_s_method_triggered()
 {
+    ImageFilter* toGreyscale = new GrayScale();
+    this->currImg = toGreyscale->apply(this->currImg);
     GrayLevelHistogram glh;
     QVector<double> histogram = glh.getHistogram(this->currImg);
     ImageFilter* filter = new Otsu(histogram);

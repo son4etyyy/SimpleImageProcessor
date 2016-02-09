@@ -63,4 +63,3 @@ int Otsu::getThreshold(QImage srcImage, QVector<double> histogram){
 
     return (thresholdStartPos + thresholdEndPos)/2;
 }
-
