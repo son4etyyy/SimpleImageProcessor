@@ -14,9 +14,10 @@ public:
     Blur(int radius);
     //@brief Applies blur filter to the source image.
     //Parameters: QImage srcImage - the source image
-    //Return type: QImage - the blured image
+    //Return type: QImage
     QImage apply(QImage srcImage);
 private:
+    //how much blured the image will be
     int radius;
 };
 

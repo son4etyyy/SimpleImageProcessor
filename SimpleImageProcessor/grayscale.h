@@ -8,7 +8,7 @@ class GrayScale : public ImageFilter
 public:
     //@brief Applies grayscale filter to the source image.
     //Parameters: QImage srcImage - the source image
-    //Return type: QImage - the image converted to grayscale
+    //Return type: QImage
     QImage apply(QImage srcImage);
 };
 
