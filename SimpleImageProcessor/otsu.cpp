@@ -1,7 +1,7 @@
 #include"otsu.h"
 #include<QRgb>
 #include<Qt>
-
+#include<cmath>
 Otsu::Otsu(QVector<double> histogram){
     this->histogram = histogram;
 }
@@ -54,8 +54,8 @@ int Otsu::getThreshold(QImage srcImage, QVector<double> histogram){
             varMax = varBetween;
             thresholdStartPos = t;
             thresholdEndPos = thresholdStartPos;
-        } else if (varBetween == varMax){
-            if(t == thresholdStartPos+1){
+        } else if (fabs(varBetween - varMax) < 1e-9){
+            if(t == thresholdEndPos+1){
                 thresholdEndPos++;
             }
         }
