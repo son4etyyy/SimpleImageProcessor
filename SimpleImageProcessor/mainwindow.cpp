@@ -118,6 +118,7 @@ void MainWindow::on_actionBlur_triggered()
     ImageFilter* filter = new Blur(radius);
     this->currImg = filter->apply(this->currImg);
     this->display();
+    filter = 0;
 }
 
 //@brief Callback function from QT events used to apply sharpen filter
@@ -129,6 +130,7 @@ void MainWindow::on_actionSharpen_triggered()
     ImageFilter* filter = new Sharpen();
     this->currImg = filter->apply(this->currImg);
     this->display();
+    filter = 0;
 }
 
 //@brief Callback function from QT events used to apply greyscale filter
@@ -140,6 +142,7 @@ void MainWindow::on_actionTo_Greyscale_triggered()
     ImageFilter* filter = new GrayScale();
     this->currImg = filter->apply(this->currImg);
     this->display();
+    filter = 0;
 }
 
 //@brief Callback function from QT events used to show greylevel histogram
@@ -157,11 +160,13 @@ void MainWindow::on_actionShow_Greylevel_Histogram_triggered()
 //Return type: None
 void MainWindow::on_actionOtsu_s_method_triggered()
 {
-    ImageFilter* toGreyscale = new GrayScale();
-    this->currImg = toGreyscale->apply(this->currImg);
+    ImageFilter* toGrayscale = new GrayScale();
+    this->currImg = toGrayscale->apply(this->currImg);
     GrayLevelHistogram glh;
     QVector<double> histogram = glh.getHistogram(this->currImg);
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
     this->display();
+    toGrayscale = 0;
+    filter = 0;
 }
