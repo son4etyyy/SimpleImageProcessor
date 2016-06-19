@@ -14,24 +14,23 @@ TEMPLATE = app
 SOURCES += main.cpp\
     mainwindow.cpp \
     graylevelhistogram.cpp\
-    blur.cpp \
-    sharpen.cpp \
     grayscale.cpp \
     qcustomplot.cpp \
-    otsu.cpp\
-    leveldialog.cpp
+    otsu.cpp \
+    displaywindow.cpp \
+    lineselect.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
     imagefilter.h \
     grayscale.h \
-    blur.h \
-    sharpen.h \
     qcustomplot.h \
-    otsu.h\
-    leveldialog.h
+    otsu.h \
+    displaywindow.h \
+    lineselect.h
 
 FORMS    += mainwindow.ui \
-            leveldialog.ui
+    displaywindow.ui \
+    lineselect.ui
 
 DISTFILES +=
