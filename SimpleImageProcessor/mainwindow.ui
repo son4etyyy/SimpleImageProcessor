@@ -46,6 +46,8 @@
     <addaction name="actionTo_Greyscale"/>
     <addaction name="actionShow_Greylevel_Histogram"/>
     <addaction name="actionOtsu_s_method"/>
+    <addaction name="actionApply_OCR"/>
+    <addaction name="actionShow_Line"/>
    </widget>
    <addaction name="menuOpen"/>
    <addaction name="menuProcess_Image"/>
@@ -88,6 +90,16 @@
   <action name="actionOtsu_s_method">
    <property name="text">
     <string>Otsu's method</string>
+   </property>
+  </action>
+  <action name="actionApply_OCR">
+   <property name="text">
+    <string>Apply OCR</string>
+   </property>
+  </action>
+  <action name="actionShow_Line">
+   <property name="text">
+    <string>Show Line</string>
    </property>
   </action>
  </widget>

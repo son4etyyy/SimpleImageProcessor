@@ -18,8 +18,10 @@ SOURCES += main.cpp\
     sharpen.cpp \
     grayscale.cpp \
     qcustomplot.cpp \
-    otsu.cpp\
-    leveldialog.cpp
+    otsu.cpp \
+    displaywindow.cpp \
+    leveldialog.cpp \
+    lineselect.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
@@ -28,10 +30,14 @@ HEADERS  += mainwindow.h \
     blur.h \
     sharpen.h \
     qcustomplot.h \
-    otsu.h\
-    leveldialog.h
+    otsu.h \
+    displaywindow.h \
+    leveldialog.h \
+    lineselect.h
 
 FORMS    += mainwindow.ui \
-            leveldialog.ui
+    displaywindow.ui \
+    leveldialog.ui \
+    lineselect.ui
 
 DISTFILES +=

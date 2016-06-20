@@ -8,6 +8,8 @@
 #include "qcolor.h"
 #include "otsu.h"
 #include "leveldialog.h"
+#include "lineselect.h"
+#include "displaywindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -169,4 +171,37 @@ void MainWindow::on_actionOtsu_s_method_triggered()
     this->display();
     toGrayscale = 0;
     filter = 0;
+}
+
+//@brief Callback function from QT events used to perform OCR
+//Parameters: None
+//Return type: None
+void MainWindow::on_actionApply_OCR_triggered()
+{
+    ImageFilter* toGrayscale = new GrayScale();
+    this->currImg = toGrayscale->apply(this->currImg);
+    GrayLevelHistogram glh;
+    QVector<double> histogram = glh.getHistogram(this->currImg);
+    ImageFilter* filter = new Otsu(histogram);
+    this->currImg = filter->apply(this->currImg);
+    //Implement img seperation
+    //seperateImage(seperatedImage, this->currImg);
+}
+
+//@brief Callback function for showling line
+//Paramaeters None
+//Return type: None
+void MainWindow::on_actionShow_Line_triggered()
+{
+    lineselect LineSelect;
+    this->show_Line(LineSelect.getLineNumber());
+}
+
+//@brief Used to show line of the segmentated text
+//Parameters: Uint8 [0-255] Line Number
+//Return type: None
+void MainWindow::show_Line(unsigned char lineNumber)
+{
+    displaywindow Dialog;
+    lineNumber < this->seperatedImage.size() ? Dialog.show(this->seperatedImage[lineNumber]) : Dialog.show(this->currImg);
 }
