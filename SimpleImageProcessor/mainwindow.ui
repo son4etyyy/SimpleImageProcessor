@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOpen">
@@ -34,11 +34,18 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_As"/>
    </widget>
    <widget class="QMenu" name="menuProcess_Image">
     <property name="title">
-     <string>OCR</string>
+     <string>Process Image</string>
     </property>
+    <addaction name="actionBlur"/>
+    <addaction name="actionSharpen"/>
+    <addaction name="actionTo_Greyscale"/>
+    <addaction name="actionShow_Greylevel_Histogram"/>
+    <addaction name="actionOtsu_s_method"/>
     <addaction name="actionApply_OCR"/>
     <addaction name="actionShow_Line"/>
    </widget>
