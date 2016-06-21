@@ -10,6 +10,9 @@
 #include "leveldialog.h"
 #include "lineselect.h"
 #include "displaywindow.h"
+#include "ocr.h"
+#include<iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -184,8 +187,9 @@ void MainWindow::on_actionApply_OCR_triggered()
     QVector<double> histogram = glh.getHistogram(this->currImg);
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
-    //Implement img seperation
-    //seperateImage(seperatedImage, this->currImg);
+    OCR ocr;
+    QVector<QImage> result = ocr.doOCR(this->currImg);
+    cout << "resultSize " << result.size() << endl;
 }
 
 //@brief Callback function for showling line
