@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     otsu.cpp \
     displaywindow.cpp \
     leveldialog.cpp \
-    lineselect.cpp
+    lineselect.cpp \
+    ocr.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     otsu.h \
     displaywindow.h \
     leveldialog.h \
-    lineselect.h
+    lineselect.h \
+    ocr.h
 
 FORMS    += mainwindow.ui \
     displaywindow.ui \
