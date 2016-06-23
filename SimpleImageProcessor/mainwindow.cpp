@@ -11,6 +11,7 @@
 #include "lineselect.h"
 #include "displaywindow.h"
 #include "ocr.h"
+#include "imagedatabaseconnection.h"
 #include<iostream>
 using namespace std;
 
@@ -188,7 +189,11 @@ void MainWindow::on_actionApply_OCR_triggered()
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
     OCR ocr;
-    QVector<QImage> result = ocr.doOCR(this->currImg);
+    QVector<CharacterImage> result = ocr.doOCR(this->currImg);
+    ImageDatabaseConnection idc;
+    for(int i = 0; i < result.size(); i++){
+        idc.SaveImageData(result[i]);
+    }
     cout << "resultSize " << result.size() << endl;
 }
 
