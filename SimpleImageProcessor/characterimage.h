@@ -18,6 +18,9 @@ public:
     //            int xCoordinate - c,
     //            int yCoordinate - the stating y coordinate
     CharacterImage(QImage image, string documentName, int lineNumber, int characterNumber, int xCoordinate, int yCoordinate);
+    //@brief Gives the the image.
+    //Return type: QImage
+    QImage getImage() const;
     //@brief Gives the name of the file from which this image is.
     //Return type: string
     string getDocumentName() const;
