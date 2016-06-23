@@ -189,7 +189,7 @@ void MainWindow::on_actionApply_OCR_triggered()
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
     OCR ocr;
-    QVector<CharacterImage> result = ocr.doOCR(this->currImg);
+    QVector<CharacterImage> result = ocr.doOCR(this->currImg, this->fileName);
     ImageDatabaseConnection idc;
     for(int i = 0; i < result.size(); i++){
         cout << i << endl;
