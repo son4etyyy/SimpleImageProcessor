@@ -8,9 +8,9 @@ class OCR
 {
 private:
     QVector<pair<int, int> > horizontalProjection(QImage& image);
-    QVector<CharacterImage> verticalProjection(QImage& image, int begin, int end, int lineNumber);
+    QVector<CharacterImage> verticalProjection(QImage& image, int begin, int end, int lineNumber, QString filename);
 public:
-    QVector<CharacterImage> doOCR(QImage& image);
+    QVector<CharacterImage> doOCR(QImage& image, QString filename);
 };
 
 #endif // OCR_H

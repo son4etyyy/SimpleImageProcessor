@@ -6,7 +6,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include "qcustomplot.h"
-
+#include "characterimage.h"
 
 
 namespace Ui {
@@ -41,7 +41,6 @@ private:
     QString fileName;
     QSize customPlotSize;
     QCustomPlot customPlot;
-    QVector< QVector< QImage> >seperatedImage;
     void display();
     void show_Line(unsigned char lineNumber, unsigned char charNumber);
 };

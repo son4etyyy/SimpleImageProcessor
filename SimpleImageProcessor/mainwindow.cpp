@@ -189,7 +189,7 @@ void MainWindow::on_actionApply_OCR_triggered()
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
     OCR ocr;
-    QVector<CharacterImage> result = ocr.doOCR(this->currImg);
+    QVector<CharacterImage> result = ocr.doOCR(this->currImg, this->fileName);
     ImageDatabaseConnection idc;
     for(int i = 0; i < result.size(); i++){
         cout << i << endl;
@@ -210,9 +210,6 @@ void MainWindow::on_actionShow_Line_triggered()
     if((INVALID_VALUE != lineNumber) && (INVALID_VALUE != charNumber))
     {
         this->show_Line(lineNumber,charNumber);
-        int lineNumber, characterNumber;
-        ImageDatabaseConnection dbConnection;
-        dbConnection.GetImageData(fileName,lineNumber,characterNumber);
     }
     else{
         //Do nothing
@@ -224,20 +221,11 @@ void MainWindow::on_actionShow_Line_triggered()
 //Return type: None
 void MainWindow::show_Line(unsigned char lineNumber, unsigned char charNumber)
 {
-    if(lineNumber < this->seperatedImage.size())
-    {
-        if(charNumber < this->seperatedImage[lineNumber].size())
-        {
+    ImageDatabaseConnection idc;
+    CharacterImage image = idc.GetImageData(fileName, lineNumber, charNumber);
+
             displaywindow Dialog;
-            Dialog.show(this->seperatedImage[lineNumber][charNumber]);
-        }
-        else
-        {
-            //Do nothing
-        }
-    }
-    else
-    {
-        //Do nothing
-    }
+            QImage img = image.getImage();
+            Dialog.show(img);
+
 }
