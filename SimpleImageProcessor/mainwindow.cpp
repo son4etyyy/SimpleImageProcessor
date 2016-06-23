@@ -10,6 +10,10 @@
 #include "leveldialog.h"
 #include "lineselect.h"
 #include "displaywindow.h"
+#include "ocr.h"
+#include "imagedatabaseconnection.h"
+#include<iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -184,8 +188,14 @@ void MainWindow::on_actionApply_OCR_triggered()
     QVector<double> histogram = glh.getHistogram(this->currImg);
     ImageFilter* filter = new Otsu(histogram);
     this->currImg = filter->apply(this->currImg);
-    //Implement img seperation
-    //seperateImage(seperatedImage, this->currImg);
+    OCR ocr;
+    QVector<CharacterImage> result = ocr.doOCR(this->currImg);
+    ImageDatabaseConnection idc;
+    for(int i = 0; i < result.size(); i++){
+        cout << i << endl;
+        idc.SaveImageData(result[i]);
+    }
+    cout << "resultSize " << result.size() << endl;
 }
 
 //@brief Callback function for showling line
@@ -195,6 +205,10 @@ void MainWindow::on_actionShow_Line_triggered()
 {
     lineselect LineSelect;
     this->show_Line(LineSelect.getLineNumber());
+
+    int lineNumber, characterNumber;
+    ImageDatabaseConnection dbConnection;
+    dbConnection.GetImageData(fileName,lineNumber,characterNumber);
 }
 
 //@brief Used to show line of the segmentated text
