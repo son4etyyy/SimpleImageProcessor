@@ -210,9 +210,6 @@ void MainWindow::on_actionShow_Line_triggered()
     if((INVALID_VALUE != lineNumber) && (INVALID_VALUE != charNumber))
     {
         this->show_Line(lineNumber,charNumber);
-        int lineNumber, characterNumber;
-        ImageDatabaseConnection dbConnection;
-        dbConnection.GetImageData(fileName,lineNumber,characterNumber);
     }
     else{
         //Do nothing

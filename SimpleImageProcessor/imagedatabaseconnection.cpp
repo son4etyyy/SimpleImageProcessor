@@ -54,23 +54,24 @@ void ImageDatabaseConnection::SaveImageData(CharacterImage image){
 }
 
 CharacterImage ImageDatabaseConnection::GetImageData(QString documentName, int lineNumber, int characterNumber){
-     QSqlQuery query = QSqlQuery(db);
-     query.prepare("SELECT * FROM Characters WHERE documentName=':documentName' AND lineNumber=:lineNumber AND characterNumber=:characterNumber;");
-     query.bindValue(":documentName", documentName.toStdString().c_str());
-     query.bindValue(":lineNumber", lineNumber);
-     query.bindValue(":characterNumber", characterNumber);
+     //QSqlQuery query = QSqlQuery(db);
+     //query.prepare("SELECT * FROM Characters WHERE documentName=':documentName' AND lineNumber=:lineNumber AND characterNumber=:characterNumber;");
 
-     query.exec();
-     cout << query.lastError().text().toStdString();
+     QString q = "SELECT * FROM Characters WHERE documentName='";
+     q.append(documentName);
+     q.append("' AND lineNumber=");
+     q.append(QString::number(lineNumber));
+     q.append(" AND characterNumber=");
+     q.append(QString::number(characterNumber));
+     q.append(";");
+     cout << q.toStdString() << endl;
      int xCoordinate;
      int yCoordinate;
-
-     //while (query.next()) {
+     QSqlQuery query =  db.exec(q);
      QImage image = QImage::fromData(query.value(0).toByteArray(), "BMP");
      xCoordinate = query.value(4).toInt();
      yCoordinate = query.value(5).toInt();
 
      CharacterImage res(image, documentName.toStdString(), lineNumber, characterNumber, xCoordinate, yCoordinate);
      return res;
-     // }
 }
