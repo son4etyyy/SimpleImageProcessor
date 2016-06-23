@@ -11,7 +11,7 @@
 ImageDatabaseConnection::ImageDatabaseConnection()
 {
     //QString servername="lacal";
-     QString dbname="mydb";
+     QString dbname="postgres";
      this->db = QSqlDatabase::addDatabase("QPSQL");
      db.setConnectOptions();
      db.setDatabaseName(dbname);
@@ -31,7 +31,7 @@ void ImageDatabaseConnection::close(){
     db.close();
 }
 
-void ImageDatabaseConnection::SaveImageData(CharacterImage image){
+void ImageDatabaseConnection::saveImageData(CharacterImage image){
     QByteArray picture;
     QBuffer buffer(&picture);
     buffer.open(QIODevice::WriteOnly);
@@ -53,10 +53,7 @@ void ImageDatabaseConnection::SaveImageData(CharacterImage image){
      query.exec();
 }
 
-CharacterImage ImageDatabaseConnection::GetImageData(QString documentName, int lineNumber, int characterNumber){
-     //QSqlQuery query = QSqlQuery(db);
-     //query.prepare("SELECT * FROM Characters WHERE documentName=':documentName' AND lineNumber=:lineNumber AND characterNumber=:characterNumber;");
-
+CharacterImage ImageDatabaseConnection::getImageData(QString documentName, int lineNumber, int characterNumber){
      QString q = "SELECT * FROM Characters WHERE documentName='";
      q.append(documentName);
      q.append("' AND lineNumber=");
@@ -68,6 +65,7 @@ CharacterImage ImageDatabaseConnection::GetImageData(QString documentName, int l
      int xCoordinate;
      int yCoordinate;
      QSqlQuery query =  db.exec(q);
+     query.first();
      QImage image = QImage::fromData(query.value(0).toByteArray(), "BMP");
      xCoordinate = query.value(4).toInt();
      yCoordinate = query.value(5).toInt();

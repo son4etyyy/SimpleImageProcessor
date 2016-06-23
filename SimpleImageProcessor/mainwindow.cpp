@@ -193,7 +193,7 @@ void MainWindow::on_actionApply_OCR_triggered()
     ImageDatabaseConnection idc;
     for(int i = 0; i < result.size(); i++){
         cout << i << endl;
-        idc.SaveImageData(result[i]);
+        idc.saveImageData(result[i]);
     }
     cout << "resultSize " << result.size() << endl;
 }
@@ -222,7 +222,7 @@ void MainWindow::on_actionShow_Line_triggered()
 void MainWindow::show_Line(unsigned char lineNumber, unsigned char charNumber)
 {
     ImageDatabaseConnection idc;
-    CharacterImage image = idc.GetImageData(fileName, lineNumber, charNumber);
+    CharacterImage image = idc.getImageData(fileName, lineNumber, charNumber);
 
             displaywindow Dialog;
             QImage img = image.getImage();

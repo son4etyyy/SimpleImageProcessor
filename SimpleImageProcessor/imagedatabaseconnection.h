@@ -3,13 +3,15 @@
 #include<characterimage.h>
 #include <QtSql/QSqlDatabase>
 
+//@brief GrayLevelHistogram is a class which is responsible
+//for the Gray-Level Histogram of a certain image
 class ImageDatabaseConnection
 {
 public:
     ImageDatabaseConnection();
     void close();
-    void SaveImageData(CharacterImage image);
-    CharacterImage GetImageData(QString documentName, int lineNumber, int characterNumber);
+    void saveImageData(CharacterImage image);
+    CharacterImage getImageData(QString documentName, int lineNumber, int characterNumber);
 private:
     QSqlDatabase db;
 };
