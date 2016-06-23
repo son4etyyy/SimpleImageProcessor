@@ -2,16 +2,16 @@
 #include<QColor>
 #include<iostream>
 using namespace std;
-QVector<QImage> OCR::doOCR(QImage &image){
-    QVector<QImage> result;
+QVector<CharacterImage> OCR::doOCR(QImage &image){
+    QVector<CharacterImage> result;
     QVector<pair<int, int> > lines = horizontalProjection(image);
     for(int i = 0; i < lines.size(); i++){
         pair<int, int> line = lines[i];
         int begin = line.first;
         int end = line.second;
-        QVector<QImage> characters = verticalProjection(image, begin, end);
-        for(int i = 0; i < characters.size(); i++){
-            result.push_back(characters[i]);
+        QVector<CharacterImage> characters = verticalProjection(image, begin, end, i+1);
+        for(int j = 0; j < characters.size(); j++){
+            //result.push_back(characters[i]);
         }
     }
 
@@ -57,9 +57,9 @@ QVector<pair<int,int> > OCR::horizontalProjection(QImage& image){
     return pairs;
 }
 
-QVector<QImage> OCR::verticalProjection(QImage& image, int begin, int end){
+QVector<CharacterImage> OCR::verticalProjection(QImage& image, int begin, int end, int lineNumber){
         cout << "vertical projection " << begin << " " << end  << " " << image.height()<< endl;
-        QVector<QImage> characters;
+        QVector<CharacterImage> characters;
         QVector<int> counts;
         for(int j = 0; j < image.width(); j++){
              int cnt = 0;
@@ -71,19 +71,21 @@ QVector<QImage> OCR::verticalProjection(QImage& image, int begin, int end){
              }
              counts.push_back(cnt);
         }
-
+        int chNumber = 0;
         for(int i = 0; i < counts.size(); i++){
             if(counts[i]!=0){
                 int pos = i;
                 for(int j = i+1; j < counts.size(); j++){
                     if(counts[j] == 0){
                         pos = j-1;
+                        chNumber++;
                         break;
                     }
                 }
 
                 QImage subImage = image.copy(i,begin,pos - i + 1,end - begin);
-                characters.push_back(subImage);
+                CharacterImage ch(subImage,"a",lineNumber, chNumber, i, begin);
+                characters.push_back(ch);
                 i = pos+1;
             }
         }
