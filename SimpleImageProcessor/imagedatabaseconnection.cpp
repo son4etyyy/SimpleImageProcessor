@@ -70,7 +70,7 @@ CharacterImage ImageDatabaseConnection::GetImageData(QString documentName, int l
      xCoordinate = query.value(4).toInt();
      yCoordinate = query.value(5).toInt();
 
-     CharacterImage res(image, documentName, lineNumber, characterNumber, xCoordinate, yCoordinate);
+     CharacterImage res(image, documentName.toStdString(), lineNumber, characterNumber, xCoordinate, yCoordinate);
      return res;
      // }
 }
