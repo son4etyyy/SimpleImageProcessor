@@ -204,18 +204,40 @@ void MainWindow::on_actionApply_OCR_triggered()
 void MainWindow::on_actionShow_Line_triggered()
 {
     lineselect LineSelect;
-    this->show_Line(LineSelect.getLineNumber());
-
-    int lineNumber, characterNumber;
-    ImageDatabaseConnection dbConnection;
-    dbConnection.GetImageData(fileName,lineNumber,characterNumber);
+    unsigned char lineNumber = INVALID_VALUE;
+    unsigned char charNumber = INVALID_VALUE;
+    LineSelect.getLineNumber(lineNumber,charNumber);
+    if((INVALID_VALUE != lineNumber) && (INVALID_VALUE != charNumber))
+    {
+        this->show_Line(lineNumber,charNumber);
+        int lineNumber, characterNumber;
+        ImageDatabaseConnection dbConnection;
+        dbConnection.GetImageData(fileName,lineNumber,characterNumber);
+    }
+    else{
+        //Do nothing
+    }
 }
 
 //@brief Used to show line of the segmentated text
 //Parameters: Uint8 [0-255] Line Number
 //Return type: None
-void MainWindow::show_Line(unsigned char lineNumber)
+void MainWindow::show_Line(unsigned char lineNumber, unsigned char charNumber)
 {
-    displaywindow Dialog;
-    lineNumber < this->seperatedImage.size() ? Dialog.show(this->seperatedImage[lineNumber]) : Dialog.show(this->currImg);
+    if(lineNumber < this->seperatedImage.size())
+    {
+        if(charNumber < this->seperatedImage[lineNumber].size())
+        {
+            displaywindow Dialog;
+            Dialog.show(this->seperatedImage[lineNumber][charNumber]);
+        }
+        else
+        {
+            //Do nothing
+        }
+    }
+    else
+    {
+        //Do nothing
+    }
 }

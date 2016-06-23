@@ -6,21 +6,23 @@ lineselect::lineselect(QWidget *parent) :
     ui(new Ui::lineselect)
 {
     ui->setupUi(this);
-    this->number = 0;
+    this->lineNumber = INVALID_VALUE;
+    this->charNumber = INVALID_VALUE;
 }
 
 lineselect::~lineselect()
 {
     delete ui;
 }
-
-unsigned char lineselect::getLineNumber( void )
+void lineselect::getLineNumber( unsigned char lineNumber, unsigned char charNumber )
 {
     this->exec();
-    return this->number;
+    lineNumber = this->lineNumber;
+    charNumber = this->charNumber;
 }
 
 void lineselect::on_pushButton_clicked()
 {
-    this->number = this->ui->lineEdit->text().toInt();
+    this->lineNumber = this->ui->lineEdit->text().toUInt();
+    this->charNumber = this->ui->lineEdit_2->text().toUInt();
 }
