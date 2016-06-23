@@ -14,7 +14,7 @@ lineselect::~lineselect()
 {
     delete ui;
 }
-void lineselect::getLineNumber( unsigned char lineNumber, unsigned char charNumber )
+void lineselect::getLineNumber( unsigned char &lineNumber, unsigned char &charNumber )
 {
     this->exec();
     lineNumber = this->lineNumber;

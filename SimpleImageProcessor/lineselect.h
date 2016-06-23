@@ -14,7 +14,7 @@ class lineselect : public QDialog
 public:
     explicit lineselect(QWidget *parent = 0);
     ~lineselect();
-    void getLineNumber( unsigned char lineNumber, unsigned char charNumber );
+    void getLineNumber( unsigned char &lineNumber, unsigned char &charNumber );
 
 private slots:
     void on_pushButton_clicked();

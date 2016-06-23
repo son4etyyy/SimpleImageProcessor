@@ -220,7 +220,7 @@ void MainWindow::on_actionShow_Line_triggered()
 }
 
 //@brief Used to show line of the segmentated text
-//Parameters: Uint8 [0-255] Line Number
+//Parameters: Uint8 [0-254] Line Number Uint8 [0-254] Char NUmber [0-254]
 //Return type: None
 void MainWindow::show_Line(unsigned char lineNumber, unsigned char charNumber)
 {
