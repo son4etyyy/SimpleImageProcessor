@@ -1,5 +1,14 @@
 #include "characterimage.h"
 
+CharacterImage::CharacterImage()
+{
+    this->documentName = "";
+    this->lineNumber = 0;
+    this->characterNumber = 0;
+    this->xCoordinate = 0;
+    this->yCoordinate = 0;
+}
+
 CharacterImage::CharacterImage(QImage image, string documentName, int lineNumber, int characterNumber, int xCoordinate, int yCoordinate)
 {
     this->image = image;

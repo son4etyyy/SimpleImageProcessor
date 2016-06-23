@@ -7,6 +7,7 @@ using namespace std;
 class CharacterImage
 {
 public:
+    CharacterImage();
     CharacterImage(QImage image, string documentName, int lineNumber, int characterNumber, int xCoordinate, int yCoordinate);
     QImage getImage() const;
     string getDocumentName() const;
