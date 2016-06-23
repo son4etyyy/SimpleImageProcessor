@@ -10,5 +10,5 @@ echo $mypassword | sudo -u -S postgres createdb mydb
 echo $mypassword | sudo -S apt-get -y install postgresql-contrib
 echo $mypassword | sudo sed -e s/'local   all             postgres                                peer'/'local   all             postgres                                md5'/ /etc/postgresql/9.3/main/pg_hba.conf
 echo $mypassword | sudo -S /etc/init.d/postgresql reload
-userToAdd=whoami
+userToAdd=$(whoami)
 echo $mypassword | sudo -u postgres createuser $userToAdd
