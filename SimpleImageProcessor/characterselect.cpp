@@ -1,7 +1,7 @@
-#include "lineselect.h"
+#include "characterselect.h"
 #include "ui_lineselect.h"
 
-lineselect::lineselect(QWidget *parent) :
+CharcterSelect::CharcterSelect(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::lineselect)
 {
@@ -10,18 +10,18 @@ lineselect::lineselect(QWidget *parent) :
     this->charNumber = INVALID_VALUE;
 }
 
-lineselect::~lineselect()
+CharcterSelect::~CharcterSelect()
 {
     delete ui;
 }
-void lineselect::getLineNumber( unsigned char &lineNumber, unsigned char &charNumber )
+void CharcterSelect::getLineNumber( unsigned char &lineNumber, unsigned char &charNumber )
 {
     this->exec();
     lineNumber = this->lineNumber;
     charNumber = this->charNumber;
 }
 
-void lineselect::on_pushButton_clicked()
+void CharcterSelect::on_pushButton_clicked()
 {
     this->lineNumber = this->ui->lineEdit->text().toUInt();
     this->charNumber = this->ui->lineEdit_2->text().toUInt();

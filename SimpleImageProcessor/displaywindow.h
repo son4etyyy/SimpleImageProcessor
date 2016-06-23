@@ -9,13 +9,13 @@ namespace Ui {
 class displaywindow;
 }
 
-class displaywindow : public QDialog
+class DisplayWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit displaywindow(QWidget *parent = 0);
-    ~displaywindow();
+    explicit DisplayWindow(QWidget *parent = 0);
+    ~DisplayWindow();
     void show(QImage& src);
 
 private:

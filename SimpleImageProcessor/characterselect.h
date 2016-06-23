@@ -7,13 +7,13 @@ namespace Ui {
 class lineselect;
 }
 
-class lineselect : public QDialog
+class CharcterSelect : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit lineselect(QWidget *parent = 0);
-    ~lineselect();
+    explicit CharcterSelect(QWidget *parent = 0);
+    ~CharcterSelect();
     void getLineNumber( unsigned char &lineNumber, unsigned char &charNumber );
 
 private slots:

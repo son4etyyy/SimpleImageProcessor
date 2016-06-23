@@ -1,7 +1,7 @@
 #include "displaywindow.h"
 #include "ui_displaywindow.h"
 
-displaywindow::displaywindow(QWidget *parent) :
+DisplayWindow::DisplayWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::displaywindow)
 {
@@ -9,12 +9,12 @@ displaywindow::displaywindow(QWidget *parent) :
     this->ui->graphicsView->setScene(&currScene);
 }
 
-displaywindow::~displaywindow()
+DisplayWindow::~DisplayWindow()
 {
     delete ui;
 }
 
-void displaywindow::show(QImage &src)
+void DisplayWindow::show(QImage &src)
 {
     this->currScene.addPixmap(QPixmap::fromImage(src));
     this->exec();

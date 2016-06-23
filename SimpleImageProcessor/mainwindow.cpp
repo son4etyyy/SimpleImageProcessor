@@ -8,7 +8,7 @@
 #include "qcolor.h"
 #include "otsu.h"
 #include "leveldialog.h"
-#include "lineselect.h"
+#include "characterselect.h"
 #include "displaywindow.h"
 #include "ocr.h"
 #include "imagedatabaseconnection.h"
@@ -203,10 +203,10 @@ void MainWindow::on_actionApply_OCR_triggered()
 //Return type: None
 void MainWindow::on_actionShow_Line_triggered()
 {
-    lineselect LineSelect;
+    CharcterSelect CharSelect;
     unsigned char lineNumber = INVALID_VALUE;
     unsigned char charNumber = INVALID_VALUE;
-    LineSelect.getLineNumber(lineNumber,charNumber);
+    CharSelect.getLineNumber(lineNumber,charNumber);
     if((INVALID_VALUE != lineNumber) && (INVALID_VALUE != charNumber))
     {
         this->show_Line(lineNumber,charNumber);
@@ -224,8 +224,8 @@ void MainWindow::show_Line(unsigned char lineNumber, unsigned char charNumber)
     ImageDatabaseConnection idc;
     CharacterImage image = idc.GetImageData(fileName, lineNumber, charNumber);
 
-            displaywindow Dialog;
+            DisplayWindow DisplayDialog;
             QImage img = image.getImage();
-            Dialog.show(img);
+            DisplayDialog.show(img);
 
 }
