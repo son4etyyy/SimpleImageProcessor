@@ -7,6 +7,7 @@ class ImageDatabaseConnection
 {
 public:
     ImageDatabaseConnection();
+    void close();
     void SaveImageData(CharacterImage image);
     CharacterImage GetImageData();//parameters x,y - coordinates of top left
 private:

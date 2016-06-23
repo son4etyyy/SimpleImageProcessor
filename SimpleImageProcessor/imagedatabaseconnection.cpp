@@ -27,12 +27,16 @@ ImageDatabaseConnection::ImageDatabaseConnection()
         //string query = "CREATE TABLE Characters ( documentName VARCHAR, lineNumber INT, characterNumber INT, xCoordinate INT, yCoordinate INT );";
         QString q = "CREATE TABLE Characters ( picture BYTEA, documentName VARCHAR, lineNumber INT, characterNumber INT, xCoordinate INT, yCoordinate INT, PRIMARY KEY (documentName,lineNumber,characterNumber) );";
         db.exec(q);
-         db.close();//TODO
+
      } else {
          //qDebug() << "Error = " << db.lastError().text();
          cout << "Error = " << db.lastError().text().toStdString();
      }
 
+}
+
+void ImageDatabaseConnection::close(){
+    db.close();
 }
 
 void ImageDatabaseConnection::SaveImageData(CharacterImage image){
@@ -51,7 +55,7 @@ void ImageDatabaseConnection::SaveImageData(CharacterImage image){
 
     QSqlQuery query = QSqlQuery(db);
     //QByteArray data = QByteArray("start\n\0\n\0\n\0\nend");
-     query.prepare("INSERT INTO blobtest (picture, documentName, lineNumber, characterNumber, xCoordinate, yCoordinate) VALUES(:picture, :documentName, :lineNumber, :characterNumber, xCoordinate, yCoordinate)");
+     query.prepare("INSERT INTO Characters (picture, documentName, lineNumber, characterNumber, xCoordinate, yCoordinate) VALUES(:picture, :documentName, :lineNumber, :characterNumber, :xCoordinate, :yCoordinate)");
      query.bindValue(":picture", picture, QSql::In | QSql::Binary);
      query.bindValue(":documentName", documentName.c_str());
      query.bindValue(":lineNumber", lineNumber);
@@ -59,7 +63,6 @@ void ImageDatabaseConnection::SaveImageData(CharacterImage image){
      query.bindValue(":xCoordinate", xCoordinate);
      query.bindValue(":yCoordinate", yCoordinate);
      query.exec();
-
 }
 
 CharacterImage ImageDatabaseConnection::GetImageData(){
