@@ -9,7 +9,7 @@ public:
     ImageDatabaseConnection();
     void close();
     void SaveImageData(CharacterImage image);
-    CharacterImage GetImageData();//parameters x,y - coordinates of top left
+    CharacterImage GetImageData(string documentName, int lineNumber, int characterNumber);
 private:
     QSqlDatabase db;
 };

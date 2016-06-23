@@ -192,6 +192,7 @@ void MainWindow::on_actionApply_OCR_triggered()
     QVector<CharacterImage> result = ocr.doOCR(this->currImg);
     ImageDatabaseConnection idc;
     for(int i = 0; i < result.size(); i++){
+        cout << i << endl;
         idc.SaveImageData(result[i]);
     }
     cout << "resultSize " << result.size() << endl;

@@ -5,15 +5,9 @@
 
 int main(int argc, char *argv[])
 {
-   /* QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
-    return a.exec();*/
-
-
-    ImageDatabaseConnection i;
-    //LetterImage img;
-
-    return 0;
+    return a.exec();
 }

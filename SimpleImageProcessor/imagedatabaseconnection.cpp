@@ -52,7 +52,7 @@ void ImageDatabaseConnection::SaveImageData(CharacterImage image){
     /*QString query = "";
     query.append(("INSERT INTO Characters VALUES ( '" ));//+ arr.toStdString()+"', '" +documentName+"',"+lineNumber+","+characterNumber+","+xCoordinate+","+yCoordinate +");").to_cstr());
     db.exec(query);*/
-
+    cout << documentName << " " << lineNumber << " " << characterNumber << endl;
     QSqlQuery query = QSqlQuery(db);
     //QByteArray data = QByteArray("start\n\0\n\0\n\0\nend");
      query.prepare("INSERT INTO Characters (picture, documentName, lineNumber, characterNumber, xCoordinate, yCoordinate) VALUES(:picture, :documentName, :lineNumber, :characterNumber, :xCoordinate, :yCoordinate)");

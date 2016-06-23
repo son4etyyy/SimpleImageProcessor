@@ -11,7 +11,7 @@ QVector<CharacterImage> OCR::doOCR(QImage &image){
         int end = line.second;
         QVector<CharacterImage> characters = verticalProjection(image, begin, end, i+1);
         for(int j = 0; j < characters.size(); j++){
-            //result.push_back(characters[i]);
+            result.push_back(characters[j]);
         }
     }
 
@@ -84,6 +84,7 @@ QVector<CharacterImage> OCR::verticalProjection(QImage& image, int begin, int en
                 }
 
                 QImage subImage = image.copy(i,begin,pos - i + 1,end - begin);
+                cout << lineNumber << "l c" << chNumber << endl;
                 CharacterImage ch(subImage,"a",lineNumber, chNumber, i, begin);
                 characters.push_back(ch);
                 i = pos+1;
