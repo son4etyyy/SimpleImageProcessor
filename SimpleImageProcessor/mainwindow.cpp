@@ -205,6 +205,10 @@ void MainWindow::on_actionShow_Line_triggered()
 {
     lineselect LineSelect;
     this->show_Line(LineSelect.getLineNumber());
+
+    int lineNumber, characterNumber;
+    ImageDatabaseConnection dbConnection;
+    dbConnection.GetImageData(fileName,lineNumber,characterNumber);
 }
 
 //@brief Used to show line of the segmentated text
