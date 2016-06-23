@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>lineselect</class>
- <widget class="QDialog" name="lineselect">
+ <class>characterselect</class>
+ <widget class="QDialog" name="characterselect">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Line Selection</string>
+   <string>Character Selection</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -44,8 +44,11 @@
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButton">
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
        <property name="text">
-        <string>OK</string>
+        <string>Show Character</string>
        </property>
       </widget>
      </item>
@@ -68,7 +71,7 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>lineselect</receiver>
+   <receiver>characterselect</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
