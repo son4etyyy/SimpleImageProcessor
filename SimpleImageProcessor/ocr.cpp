@@ -2,14 +2,14 @@
 #include<QColor>
 #include<iostream>
 using namespace std;
-QVector<CharacterImage> OCR::doOCR(QImage &image){
+QVector<CharacterImage> OCR::doOCR(QImage &image, QString filename){
     QVector<CharacterImage> result;
     QVector<pair<int, int> > lines = horizontalProjection(image);
     for(int i = 0; i < lines.size(); i++){
         pair<int, int> line = lines[i];
         int begin = line.first;
         int end = line.second;
-        QVector<CharacterImage> characters = verticalProjection(image, begin, end, i+1);
+        QVector<CharacterImage> characters = verticalProjection(image, begin, end, i+1, filename);
         for(int j = 0; j < characters.size(); j++){
             //result.push_back(characters[i]);
         }
@@ -57,7 +57,7 @@ QVector<pair<int,int> > OCR::horizontalProjection(QImage& image){
     return pairs;
 }
 
-QVector<CharacterImage> OCR::verticalProjection(QImage& image, int begin, int end, int lineNumber){
+QVector<CharacterImage> OCR::verticalProjection(QImage& image, int begin, int end, int lineNumber, QString filename){
         cout << "vertical projection " << begin << " " << end  << " " << image.height()<< endl;
         QVector<CharacterImage> characters;
         QVector<int> counts;
@@ -84,7 +84,7 @@ QVector<CharacterImage> OCR::verticalProjection(QImage& image, int begin, int en
                 }
 
                 QImage subImage = image.copy(i,begin,pos - i + 1,end - begin);
-                CharacterImage ch(subImage,"a",lineNumber, chNumber, i, begin);
+                CharacterImage ch(subImage,filename.toStdString(),lineNumber, chNumber, i, begin);
                 characters.push_back(ch);
                 i = pos+1;
             }
