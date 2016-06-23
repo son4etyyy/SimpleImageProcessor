@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -21,7 +22,9 @@ SOURCES += main.cpp\
     otsu.cpp \
     displaywindow.cpp \
     leveldialog.cpp \
-    lineselect.cpp
+    lineselect.cpp \
+    imagedatabaseconnection.cpp \
+    characterimage.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
@@ -33,7 +36,9 @@ HEADERS  += mainwindow.h \
     otsu.h \
     displaywindow.h \
     leveldialog.h \
-    lineselect.h
+    lineselect.h \
+    imagedatabaseconnection.h \
+    characterimage.h
 
 FORMS    += mainwindow.ui \
     displaywindow.ui \
