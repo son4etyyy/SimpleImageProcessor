@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <vector>
+#include <QVector>
 #include <QFileDialog>
 #include <QString>
 #include <QMainWindow>
@@ -41,9 +41,8 @@ private:
     QString fileName;
     QSize customPlotSize;
     QCustomPlot customPlot;
-    std::vector<CharacterImage> seperatedImage;
     void display();
-    void show_Line(unsigned char lineNumber);
+    void show_Line(unsigned char lineNumber, unsigned char charNumber);
 };
 
 #endif // MAINWINDOW_H

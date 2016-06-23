@@ -2,7 +2,7 @@
 #define LINESELECT_H
 
 #include <QDialog>
-
+#define INVALID_VALUE 255u
 namespace Ui {
 class lineselect;
 }
@@ -14,14 +14,15 @@ class lineselect : public QDialog
 public:
     explicit lineselect(QWidget *parent = 0);
     ~lineselect();
-    unsigned char getLineNumber( void );
+    void getLineNumber( unsigned char &lineNumber, unsigned char &charNumber );
 
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::lineselect *ui;
-    unsigned char number;
+    unsigned char lineNumber;
+    unsigned char charNumber;
 };
 
 #endif // LINESELECT_H
