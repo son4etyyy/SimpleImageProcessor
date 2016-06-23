@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     leveldialog.cpp \
     lineselect.cpp \
     imagedatabaseconnection.cpp \
-    characterimage.cpp
+    characterimage.cpp \
+    ocr.cpp
 
 HEADERS  += mainwindow.h \
     graylevelhistogram.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     leveldialog.h \
     lineselect.h \
     imagedatabaseconnection.h \
-    characterimage.h
+    characterimage.h \
+    ocr.h
 
 FORMS    += mainwindow.ui \
     displaywindow.ui \
