@@ -192,6 +192,7 @@ void MainWindow::on_actionApply_OCR_triggered()
     QVector<CharacterImage> result = ocr.doOCR(this->currImg, this->fileName);
     ImageDatabaseConnection idc;
     for(int i = 0; i < result.size(); i++){
+        cout << i << endl;
         idc.SaveImageData(result[i]);
     }
     cout << "resultSize " << result.size() << endl;
@@ -204,6 +205,10 @@ void MainWindow::on_actionShow_Line_triggered()
 {
     lineselect LineSelect;
     this->show_Line(LineSelect.getLineNumber());
+
+    int lineNumber, characterNumber;
+    ImageDatabaseConnection dbConnection;
+    dbConnection.GetImageData(fileName,lineNumber,characterNumber);
 }
 
 //@brief Used to show line of the segmentated text
